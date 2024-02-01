@@ -1,6 +1,7 @@
 "use strict";
 const cache = [];
 function square(num) {
+    const timeStart = Date.now();
     if (cache[num] !== undefined) {
         return cache[num];
     }
@@ -11,10 +12,16 @@ function square(num) {
         }
     }
     cache[num] = result;
+    const timePassed = Date.now() - timeStart;
     return result;
 }
 console.log(square(90000));
-console.log(square(90000));
+setTimeout(() => {
+    console.log(square(90000));
+}, 500);
+setTimeout(() => {
+    console.log(square(90000));
+}, 500);
 console.log(square(90000));
 console.log(square(90000));
 console.log(square(90000));

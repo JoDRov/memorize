@@ -1,4 +1,4 @@
-describe("should memorize the function result in cache", () => {
+describe("should memorize the function's result in cache", () => {
     it ("Should memorize a result in cache", () => {
         
         const cache: number[] = []

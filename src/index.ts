@@ -20,7 +20,14 @@ function square (num: number): number{
 }
 
 console.log(square(90000))
-console.log(square(90000))
+setTimeout(() => {
+    console.log(square(90000))
+}, 500)
+
+setTimeout(() => {
+    console.log(square(90000))
+}, 500)
+
 console.log(square(90000))
 console.log(square(90000))
 console.log(square(90000))
