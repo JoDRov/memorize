@@ -1,27 +1,25 @@
-describe("should memorize the function's result in cache", () => {
-    it ("Should memorize a result in cache", () => {
-        
-        const cache: number[] = []
-        let timerStart: number = 0;
-        
-        function square (num: number): number{
-            if (cache[num] !== null){
-                return cache[num]
-            }
+import { memoize } from "./index";
 
-            let result = 0
-
-            for (let i = 0; i <= num; i++){
-                for (let j = 0; j <= num; j++){
-                    result += 1
-                }
-            }
-
-            cache[num] = result
-            return result
-        }
-
-        console.log(square(3000))
-        expect(square(3000)).toBe(3000)
+describe('memoize function', () => {
+  it('should return the result faster on subsequent calls', () => {
+    const slowFunctionMock = jest.fn((num: number) => {
+      let result = 0
+      for (let i = 0; i <= num; i++) {
+        result = i
+      }
+      return result
     })
+
+    const fastFunction: Function = memoize(slowFunctionMock)
+    console.time('firstCall')
+    fastFunction(2000000000)
+    const endTime = Number(console.timeEnd('firstCall'))
+
+    console.time('secondCall')
+    fastFunction(2000000000)
+    const endTime1 = Number(console.timeEnd('secondCall'))
+
+    expect(endTime1).toBeLessThan(endTime)
+    expect(slowFunctionMock).toHaveBeenCalledTimes(1)
+  })
 })

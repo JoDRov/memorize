@@ -1,28 +1,38 @@
 "use strict";
-const cache = [];
-function square(num) {
-    const timeStart = Date.now();
-    if (cache[num] !== undefined) {
-        return cache[num];
-    }
-    let result = 0;
-    for (let i = 1; i <= num; i++) {
-        for (let j = 1; j <= num; j++) {
-            result += 1;
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.memoize = void 0;
+const memoize = (func) => {
+    const cache = {};
+    return function (...args) {
+        const key = args.join(',');
+        if (cache[key]) {
+            return cache[key];
         }
+        const result = func(...args);
+        cache[key] = result;
+        return result;
+    };
+};
+exports.memoize = memoize;
+const slowFunction = (num) => {
+    let result = 0;
+    for (let i = 0; i <= num; i++) {
+        result = i;
     }
-    cache[num] = result;
-    const timePassed = Date.now() - timeStart;
-    return result;
-}
-console.log(square(90000));
-setTimeout(() => {
-    console.log(square(90000));
-}, 500);
-setTimeout(() => {
-    console.log(square(90000));
-}, 500);
-console.log(square(90000));
-console.log(square(90000));
-console.log(square(90000));
+    return (result);
+};
+const fastFunction = (0, exports.memoize)(slowFunction);
+console.time();
+console.log(fastFunction(2000000000));
+console.timeEnd();
+console.time();
+console.log(fastFunction(2000000000));
+console.timeEnd();
+console.time();
+console.log(fastFunction(2000000000));
+console.timeEnd();
+console.time();
+console.log(fastFunction(2000000000));
+console.timeEnd();
+//slowFunction(20000)
 //# sourceMappingURL=index.js.map

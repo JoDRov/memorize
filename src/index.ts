@@ -1,33 +1,38 @@
-const cache: number[] = []
-        
-function square (num: number): number{
-    const timeStart = Date.now()
-    if (cache[num] !== undefined){
-        return cache[num]
-    }
-
-    let result = 0
-
-    for (let i = 1; i <= num; i++){
-        for (let j = 1; j <= num; j++){
-            result += 1
+export const memoize = (func: Function) => {
+    const cache: { [key: string]: any } = {}
+    return function (...args: number[]) {
+        const key = args.join(',')
+        if (cache[key]) {
+            return cache[key]
         }
+        const result = func(...args)
+        cache[key] = result
+        return result
     }
-
-    cache[num] = result
-    const timePassed = Date.now() - timeStart
-    return result
 }
 
-console.log(square(90000))
-setTimeout(() => {
-    console.log(square(90000))
-}, 500)
 
-setTimeout(() => {
-    console.log(square(90000))
-}, 500)
+const slowFunction: Function = (num: number) => {
+    let result = 0;
+    for (let i = 0; i <= num; i++){
+        result = i
+    }
+    return(result)
+}
 
-console.log(square(90000))
-console.log(square(90000))
-console.log(square(90000))
+const fastFunction = memoize(slowFunction)
+console.time()
+console.log(fastFunction(2000000000))
+console.timeEnd()
+console.time()
+console.log(fastFunction(2000000000))
+console.timeEnd()
+console.time()
+console.log(fastFunction(2000000000))
+console.timeEnd()
+console.time()
+console.log(fastFunction(2000000000))
+console.timeEnd()
+
+
+//slowFunction(20000)
