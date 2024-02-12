@@ -1,16 +1,15 @@
-export function memoize(func: (num: number) => number) {
+export function memoize(func: Function): any {
     const cache: { [key: string]: any } = {}
     return function (...args: number[]) {
         const key = args.join(',')
-        if (cache[key]) {
-            return cache[key]
+        if (cache[key] !== undefined) {
+            return cache[key];
         }
-        const result = func(20000)
+        const result = func(...args)
         cache[key] = result
         return result
-    }
+    };
 }
-
 
 const slowFunction: (num: number) => number = (num: number) => {
     let result = 0
@@ -20,7 +19,7 @@ const slowFunction: (num: number) => number = (num: number) => {
     return result
 }
 
-const fastFunction = memoize(slowFunction)
+/*const fastFunction = memoize(slowFunction)
 console.time()
 console.log(fastFunction(2000000000))
 console.timeEnd()
@@ -35,4 +34,4 @@ console.log(fastFunction(2000000000))
 console.timeEnd()
 
 
-//slowFunction(20000)
+slowFunction(20000)*/
