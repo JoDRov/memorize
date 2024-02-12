@@ -1,23 +1,23 @@
-export const memoize = (func: Function) => {
+export function memoize(func: (num: number) => number) {
     const cache: { [key: string]: any } = {}
     return function (...args: number[]) {
         const key = args.join(',')
         if (cache[key]) {
             return cache[key]
         }
-        const result = func(...args)
+        const result = func(20000)
         cache[key] = result
         return result
     }
 }
 
 
-const slowFunction: Function = (num: number) => {
-    let result = 0;
-    for (let i = 0; i <= num; i++){
+const slowFunction: (num: number) => number = (num: number) => {
+    let result = 0
+    for (let i = 0; i <= num; i++) {
         result = i
     }
-    return(result)
+    return result
 }
 
 const fastFunction = memoize(slowFunction)

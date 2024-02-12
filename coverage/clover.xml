@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1707572495476" clover="3.2.0">
-  <project timestamp="1707572495476" name="All files">
+<coverage generated="1707730788136" clover="3.2.0">
+  <project timestamp="1707730788136" name="All files">
     <metrics statements="27" coveredstatements="27" conditionals="1" coveredconditionals="1" methods="3" coveredmethods="3" elements="31" coveredelements="31" complexity="0" loc="27" ncloc="27" packages="1" files="1" classes="1"/>
     <file name="index.ts" path="/Users/nhaoz/Workspace/itAcademy/NodeJs/sprint-2/memorize/src/index.ts">
       <metrics statements="27" coveredstatements="27" conditionals="1" coveredconditionals="1" methods="3" coveredmethods="3"/>
@@ -16,7 +16,7 @@
       <line num="15" count="1" type="stmt"/>
       <line num="16" count="1" type="stmt"/>
       <line num="17" count="1" type="stmt"/>
-      <line num="18" count="2000000001" type="stmt"/>
+      <line num="18" count="20001" type="stmt"/>
       <line num="20" count="1" type="stmt"/>
       <line num="23" count="1" type="stmt"/>
       <line num="24" count="1" type="stmt"/>

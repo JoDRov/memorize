@@ -1,11 +1,11 @@
 TN:
 SF:src/index.ts
-FN:1,(anonymous_0)
+FN:1,memoize
 FN:3,(anonymous_1)
 FN:15,(anonymous_2)
 FNF:3
 FNH:3
-FNDA:1,(anonymous_0)
+FNDA:1,memoize
 FNDA:4,(anonymous_1)
 FNDA:1,(anonymous_2)
 DA:1,1
@@ -20,7 +20,7 @@ DA:10,1
 DA:15,1
 DA:16,1
 DA:17,1
-DA:18,2000000001
+DA:18,20001
 DA:20,1
 DA:23,1
 DA:24,1
